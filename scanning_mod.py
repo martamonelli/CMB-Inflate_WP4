@@ -381,7 +381,7 @@ def ctime2bore(ctime, theta_antisun=45., theta_boresight=50.,
     theta_out = np.arctan2(np.sqrt(p_out[0,:]**2 + p_out[1,:]**2), p_out[2,:])
     phi_out = np.arctan2(p_out[1,:],p_out[0,:])
 
-    theta_out = wraparound_npi(theta_out, 1.)
+    theta_out = wraparound_npi(theta_out, 1.) #FIXME!!!!!
     phi_out = wraparound_npi(phi_out, 2.)
     psi_out = wraparound_2pi(p_out[3, :])
     

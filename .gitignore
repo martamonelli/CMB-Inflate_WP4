@@ -1,4 +1,4 @@
-temp_beam.npy
+*.npy
 __pycache__/
 *.pdf
 *.png

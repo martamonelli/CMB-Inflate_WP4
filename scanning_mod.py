@@ -7,8 +7,6 @@ radeg = (180./pi)
 This script is a modified version of beamconv's scanning.py module [...] 
 which in turn is based on pyScan [https://github.com/tmatsumu/LB_SYSPL_v4.2].
 
-The main difference between the functions defined here with respect to the scanning.py module [...]
-
 '''
 
 def convert_Julian2Dublin(JD):
@@ -381,8 +379,12 @@ def ctime2bore(ctime, theta_antisun=45., theta_boresight=50.,
     theta_out = np.arctan2(np.sqrt(p_out[0,:]**2 + p_out[1,:]**2), p_out[2,:])
     phi_out = np.arctan2(p_out[1,:],p_out[0,:])
 
-    theta_out = wraparound_npi(theta_out, 1.) #FIXME!!!!!
-    phi_out = wraparound_npi(phi_out, 2.)
+    theta_out = wraparound_2pi(theta_out)
+    phi_out = wraparound_2pi(phi_out)
     psi_out = wraparound_2pi(p_out[3, :])
     
+    # warning if theta beyond allowed range
+    if np.any(theta_out > np.pi):
+        print('theta beyond allowed range [0,pi]!')
+            
     return theta_out, phi_out, psi_out
